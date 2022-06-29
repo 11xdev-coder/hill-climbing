@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class CarController : MonoBehaviour
 {
@@ -19,24 +21,22 @@ public class CarController : MonoBehaviour
     public float movement;
     public float carRotationSpeed = 1;
 
-    [Header("Air & Flips")]
-    public WheelAirTime frontTireDef;
-    public WheelAirTime backTireDef;
+    [Header("Air")]
     public bool isCarInAir = true;
-    public int totalAirTime;
 
     [Header("Fuel")] 
     public float fuel = 1.0f;
     public float fuelDecrease;
     public FuelMeter fuelMeter;
 
+    [Header("HUD")]
+    public Transform hud;
+
     // Start is called before the first frame update
     void Start()
     {
-        //frontTireDef = frontTire.GetComponent<FlipDefine>();
-        //backTireDef = backTire.GetComponent<FlipDefine>();
-        InvokeRepeating("CheckForAirTime", 1, 1);
         InvokeRepeating("FuelDecrease", 0.1f, 0.1f);
+        hud.gameObject.SetActive(true);
     }
 
     public void OnCollisionEnter2D(Collision2D col)
@@ -90,31 +90,6 @@ public class CarController : MonoBehaviour
             frontTire.useMotor = false;
             backTire.useMotor = false;
         }
-
-        //if (isOutOfFuel)
-        //{
-        //    outOfFuelTransform.gameObject.SetActive(true);
-        //    vo_OutOfFuel.Play();
-        //}
-    }
-
-    void CheckForAirTime()
-    {
-        if (frontTireDef.isInAir == true && backTireDef.isInAir == true && isCarInAir == true)
-        {
-            // TODO : ADD AIR TIME BONUS
-            InvokeRepeating("AirTimeBonus", 1, 1);
-        }
-        else
-        {
-            CancelInvoke("AirTimeBonus");
-        }
-    }
-
-    void AirTimeBonus()
-    {
-        totalAirTime++;
-        print(totalAirTime);
     }
 
     void FuelDecrease()

@@ -12,6 +12,7 @@ public class Destructive : MonoBehaviour
     public AudioSource AS;
 
     public bool isDetached = false;
+    public float capacity = 0;
     public void Start()
     {
 
@@ -23,9 +24,32 @@ public class Destructive : MonoBehaviour
         {
             if (col.transform.CompareTag(canDestroyLayer))
             {
-                connectedObjectRB.connectedBody = null;
-                isDetached = true;
-                AS.Play();
+                capacity -= 0.25f;
+                if (capacity <= 0)
+                {
+                    connectedObjectRB.connectedBody = null;
+                    isDetached = true;
+                    AS.Play();
+                    GetComponent<PolygonCollider2D>().enabled = false;
+                }
+            }
+        }
+    }
+
+    public void OnCollisionStay2D(Collision2D col)
+    {
+        if (!isDetached)
+        {
+            if (col.transform.CompareTag(canDestroyLayer))
+            {
+                capacity -= 0.1f;
+                if (capacity <= 0)
+                {
+                    connectedObjectRB.connectedBody = null;
+                    isDetached = true;
+                    AS.Play();
+                    GetComponent<PolygonCollider2D>().enabled = false;
+                }
             }
         }
     }

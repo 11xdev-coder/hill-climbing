@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Windows.WebCam;
 
 public class FuelMeter : MonoBehaviour
 {
@@ -17,10 +16,15 @@ public class FuelMeter : MonoBehaviour
     public bool isOutOfFuel = false;
     public Transform outOfFuelTransform;
     public AudioSource vo_OutOfFuel;
+    public AudioClip clip;
 
     public DriverDown driverDown;
 
     public Rigidbody2D target;
+
+    public bool cantBeDD = false;
+
+    public Transform hud;
 
     public void Start()
     {
@@ -35,17 +39,25 @@ public class FuelMeter : MonoBehaviour
                 new Vector3(0, 0, Mathf.Lerp(minFuelNeedleAngle, maxFuelNeedleAngle, fuel / maxFuel));
         }
 
+
         if (!driverDown.isDriverDown)
         {
             if (isOutOfFuel)
             {
                 if (target.velocity.sqrMagnitude <= 1)
                 {
-                    outOfFuelTransform.gameObject.SetActive(true);
                     vo_OutOfFuel.Play();
+                    outOfFuelTransform.gameObject.SetActive(true);
                     isOutOfFuel = false;
+                    cantBeDD = true;
+                    Invoke("DisableHUD", 1.4f);
                 }
             }
         }
+    }
+
+    public void DisableHUD()
+    {
+        hud.gameObject.SetActive(false);
     }
 }

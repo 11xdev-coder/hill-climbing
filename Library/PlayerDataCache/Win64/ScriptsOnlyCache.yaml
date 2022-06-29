@@ -3,14 +3,15 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - CameraFollow
     - CarController
+    - Destructive
     - DriverDown
+    - FuelMeter
     - Speedometer
     - WheelAirTime
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
-    - UnityEditor.U2D.IK.IKGizmos
     Unity.2D.SpriteShape.Runtime.dll:
     - UnityEngine.U2D.SpriteShape
     - UnityEngine.U2D.SpriteShapeController
@@ -24,6 +25,12 @@ ScriptsOnlyBuild:
     - UnityEditor.Tilemaps.TilemapPrefabStageHelper
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    Unity.TextMeshPro.dll:
+    - TMPro.TMP_FontAsset
+    - TMPro.TMP_Settings
+    - TMPro.TMP_SpriteAsset
+    - TMPro.TMP_StyleSheet
+    - TMPro.TextMeshProUGUI
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
@@ -50,9 +57,13 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 21
       Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
     - Class: 28
       Script: {instanceID: 0}
     - Class: 48
+      Script: {instanceID: 0}
+    - Class: 49
       Script: {instanceID: 0}
     - Class: 50
       Script: {instanceID: 0}
@@ -73,30 +84,46 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1516}
+      Script: {instanceID: 1542}
     - Class: 114
-      Script: {instanceID: 1978}
+      Script: {instanceID: 1860}
     - Class: 114
-      Script: {instanceID: 2678}
+      Script: {instanceID: 2004}
     - Class: 114
-      Script: {instanceID: 2850}
+      Script: {instanceID: 2132}
     - Class: 114
-      Script: {instanceID: 2880}
+      Script: {instanceID: 2270}
     - Class: 114
-      Script: {instanceID: 3082}
+      Script: {instanceID: 2706}
     - Class: 114
-      Script: {instanceID: 3090}
+      Script: {instanceID: 2878}
     - Class: 114
-      Script: {instanceID: 3248}
+      Script: {instanceID: 2908}
     - Class: 114
-      Script: {instanceID: 3340}
+      Script: {instanceID: 2930}
     - Class: 114
-      Script: {instanceID: 3478}
+      Script: {instanceID: 3110}
     - Class: 114
-      Script: {instanceID: 4012}
+      Script: {instanceID: 3118}
     - Class: 114
-      Script: {instanceID: 4396}
+      Script: {instanceID: 3276}
+    - Class: 114
+      Script: {instanceID: 3322}
+    - Class: 114
+      Script: {instanceID: 3372}
+    - Class: 114
+      Script: {instanceID: 3510}
+    - Class: 114
+      Script: {instanceID: 4044}
+    - Class: 114
+      Script: {instanceID: 4428}
+    - Class: 114
+      Script: {instanceID: 4894}
+    - Class: 114
+      Script: {instanceID: 5290}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -205,6 +232,12 @@ ScriptsOnlyBuild:
     className: CameraFollow
   - hash:
       serializedVersion: 2
+      Hash: ab871908f0e3b035414a957e148fe75e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: FuelMeter
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -301,7 +334,7 @@ ScriptsOnlyBuild:
     className: TestRunCallbackListener
   - hash:
       serializedVersion: 2
-      Hash: 9ee912bd5f468895db70f1e6f897bec7
+      Hash: 38444c7eb255bb50a2a64e0a29e9785f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CarController
@@ -343,10 +376,22 @@ ScriptsOnlyBuild:
     className: TestResultRendererCallback
   - hash:
       serializedVersion: 2
-      Hash: 6b664dacbf7e3c182863bf6b1e6bb3ea
+      Hash: 9c827c8ac78333649eeb9a1c2f0d695c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DriverDown
+  - hash:
+      serializedVersion: 2
+      Hash: c9ea57a14f3f2be165b96010204f4dc3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Destructive
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: FuelBar
   - hash:
       serializedVersion: 2
       Hash: 748dd2a2a28da4e618912da5ac45684b
@@ -662,4 +707,4 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/Scenes/CountrySide/level1.unity
-  playerPath: D:/Projects/HCBuilds/WIndows/2/Hill Climbing.exe
+  playerPath: D:/Projects/HCBuilds/WIndows/3/Hill Climbing.exe

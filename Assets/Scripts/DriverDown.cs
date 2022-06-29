@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class DriverDown : MonoBehaviour
 {
@@ -21,6 +20,13 @@ public class DriverDown : MonoBehaviour
 
     public FuelMeter fuelMeter;
 
+    public Transform hud;
+
+    public Transform[] partsToChangeLayer;
+    public string afterDDmaskName;
+
+    public int index = -1;
+
     void Start()
     {
         driverDownImage.gameObject.SetActive(false);
@@ -28,7 +34,7 @@ public class DriverDown : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (!fuelMeter.isOutOfFuel)
+        if (!fuelMeter.cantBeDD)
         {
             if (!isDriverDown)
             {
@@ -45,6 +51,12 @@ public class DriverDown : MonoBehaviour
                     ASboneCrack.Play();
                     ASvo.Play();
                     isDriverDown = true;
+                    hud.gameObject.SetActive(false);
+                    foreach (Transform t in partsToChangeLayer)
+                    {
+                        index++;
+                        partsToChangeLayer[index].gameObject.layer = LayerMask.NameToLayer(afterDDmaskName);
+                    }
                 }
             }
         }

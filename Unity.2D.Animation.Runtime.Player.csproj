@@ -11,7 +11,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{11A37B81-5021-AF09-E0F5-74CF0BD21AAA}</ProjectGuid>
+    <ProjectGuid>{8386B4BF-0223-1DE6-9F33-E2A78A9AFED7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Unity.2D.Animation.Runtime</AssemblyName>
@@ -262,7 +262,7 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.30f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.XRModule.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>D:/Projects/Hill Climbing/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>D:/Projects/hill-climbing/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.30f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -612,22 +612,22 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Unity.2D.Common.Runtime.csproj">
-      <Project>{F07E00E9-7906-3265-24F4-DAEBBCBB3F66}</Project>
+      <Project>{1DC78E63-5EA0-E8AC-0CDA-A24161F540A9}</Project>
       <Name>Unity.2D.Common.Runtime</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="Unity.InternalAPIEngineBridge.001.csproj">
-      <Project>{EBCAE9BC-BE78-10AF-5679-EFDD52E14D7D}</Project>
+      <Project>{278FDF0A-3013-44DB-111B-178369B5D870}</Project>
       <Name>Unity.InternalAPIEngineBridge.001</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="Unity.Mathematics.csproj">
-      <Project>{444753A9-A55C-DB71-39BC-D7ED8A8BC5BA}</Project>
+      <Project>{1CA1EE5A-D7C4-79F2-2F01-D06D87132CA2}</Project>
       <Name>Unity.Mathematics</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.csproj">
-      <Project>{C04F542D-7DEB-5FE2-EBAD-C119C9130D38}</Project>
+      <Project>{3C0D756B-1DA1-277F-24E2-77A30937E2FD}</Project>
       <Name>UnityEngine.UI</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
