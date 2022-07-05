@@ -19,19 +19,27 @@ public class BonusesCheck : MonoBehaviour
     public int totalWheelie;
     public int currentWheelie;
     public GameObject wheelieText;
-    public bool isScaledWheelieText = false;
+    public bool isRotatedWheelieText = false;
 
-    public CanvasGroup bonusesCanvas;
+    [Header("Flips")] 
+    public float startFlipAngleZ = float.NaN;
+    public int totalFlips;
+    public GameObject flipText;
 
     public int textRotSpeed = 150;
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("CheckForBonuses", 1, 1);
+        InvokeRepeating("FlipCheck", 0.1f, 0.1f);
+
         airTimeText.gameObject.SetActive(true);
         wheelieText.gameObject.SetActive(true);
+        flipText.gameObject.SetActive(true);
+
         airTimeText.GetComponent<TMP_Text>().alpha = 0;
         wheelieText.GetComponent<TMP_Text>().alpha = 0;
+        flipText.GetComponent<TMP_Text>().alpha = 0;
     }
 
     // Update is called once per frame
@@ -62,11 +70,11 @@ public class BonusesCheck : MonoBehaviour
 
         if (frontTireDef.isInAir == true && backTireDef.isInAir == false && carDef.isCarInAir == true)
         {
-            if (!isScaledWheelieText)
+            if (!isRotatedWheelieText)
             {
-                wheelieText.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
-                wheelieText.transform.localScale = new Vector3(1, 0);
-                isScaledWheelieText = true;
+                wheelieText.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 15));
+                wheelieText.transform.localScale = new Vector3(1, 1, 1);
+                isRotatedWheelieText = true;
             }
             WheelieBonus();
         }
@@ -74,24 +82,38 @@ public class BonusesCheck : MonoBehaviour
         {
             InvokeRepeating("FadeOutWheelieText", 0.4f, Time.deltaTime);
             currentWheelie = 0;
-            isScaledWheelieText = false;
+            isRotatedWheelieText = false;
         }
     }
 #endregion
 
-    void WheelieBonus()
+    void FlipCheck()
     {
-        totalWheelie++;
-        currentWheelie++;
+        if (frontTireDef.isInAir == true && backTireDef.isInAir == true && carDef.isCarInAir == true)
+        {
+            if (float.IsNaN(startFlipAngleZ))
+            {
+                startFlipAngleZ = carDef.transform.rotation.z;
+            }
 
-        wheelieText.GetComponent<TMP_Text>().alpha = 1;
-
-        wheelieText.GetComponent<TMP_Text>().text = "WHEELIE \n  +" + currentWheelie;
-        InvokeRepeating("ScaleWheelieTextByY", Time.deltaTime, Time.deltaTime);
-        InvokeRepeating("RotateWheelieText", Time.deltaTime, Time.deltaTime);
-
-        print(totalWheelie);
+            if (carDef.transform.rotation.z >= startFlipAngleZ + 0.25f)
+            {
+                FlipBonus();
+                startFlipAngleZ = float.NaN;
+            }
+            else if (carDef.transform.rotation.z <= startFlipAngleZ - 0.25f)
+            {
+                FlipBonus();
+                startFlipAngleZ = float.NaN;
+            }
+        }
+        else
+        {
+            InvokeRepeating("FadeOutFlipText", 0.4f, Time.deltaTime);
+            startFlipAngleZ = float.NaN;
+        }
     }
+
     #region AirTime
     void AirTimeBonus()
     {
@@ -152,24 +174,47 @@ public class BonusesCheck : MonoBehaviour
     #endregion
 
     #region Wheelie
-    void ScaleWheelieTextByY()
+    void WheelieBonus()
     {
-        if (wheelieText.transform.localScale.y < 1)
+        totalWheelie++;
+        currentWheelie++;
+
+        wheelieText.GetComponent<TMP_Text>().alpha = 1;
+
+        wheelieText.GetComponent<TMP_Text>().text = "WHEELIE \n  +" + currentWheelie;
+        InvokeRepeating("SizeWheelieText", Time.deltaTime, Time.deltaTime);
+        InvokeRepeating("RotateWheelieText", Time.deltaTime, Time.deltaTime);
+
+        //print(totalWheelie);
+    }
+
+    void SizeWheelieText()
+    {
+        //if (wheelieText.transform.localScale.y < 1)
+        //{
+        //    wheelieText.transform.localScale = new Vector3(wheelieText.transform.localScale.x,
+        //        wheelieText.transform.localScale.y + 0.1f);
+        //}
+        //else
+        //{
+        //    CancelInvoke("ScaleWheelieText");
+        //}
+        if (wheelieText.transform.localScale.x < 2)
         {
-            wheelieText.transform.localScale = new Vector3(wheelieText.transform.localScale.x,
-                wheelieText.transform.localScale.y + 0.1f);
+            wheelieText.transform.localScale = new Vector3(wheelieText.transform.localScale.x + 0.0008f,
+                wheelieText.transform.localScale.y + 0.0008f);
         }
         else
         {
-            CancelInvoke("ScaleWheelieText");
+            CancelInvoke("SizeWheelieText");
         }
     }
     void RotateWheelieText()
     {
         //print(wheelieText.transform.rotation.z);
-        if (wheelieText.transform.rotation.z >= -2)
+        if (wheelieText.transform.rotation.z < 0.30)
         {
-            wheelieText.transform.Rotate(0, 0, -1 * 4 * Time.deltaTime);
+            wheelieText.transform.Rotate(0, 0, 1 * textRotSpeed * Time.deltaTime);
         }
         else
         {
@@ -188,5 +233,54 @@ public class BonusesCheck : MonoBehaviour
             CancelInvoke("FadeOutWheelieText");
         }
     }
-#endregion
+    #endregion
+
+    #region Flip
+    public void FlipBonus()
+    {
+        totalFlips++;
+
+        flipText.GetComponent<TMP_Text>().alpha = 1;
+
+        InvokeRepeating("SizeFlipText", Time.deltaTime, Time.deltaTime);
+        InvokeRepeating("RotateFlipText", Time.deltaTime, Time.deltaTime);
+    }
+
+    public void SizeFlipText()
+    {
+        if (flipText.transform.localScale.x < 2)
+        {
+            flipText.transform.localScale = new Vector3(flipText.transform.localScale.x + 0.0008f,
+                flipText.transform.localScale.y + 0.0008f);
+        }
+        else
+        {
+            CancelInvoke("SizeFlipText");
+        }
+    }
+
+    void RotateFlipText()
+    {
+        if (flipText.transform.rotation.z >= 0.21)
+        {
+            flipText.transform.Rotate(0, 0, -1 * textRotSpeed * Time.deltaTime);
+        }
+        else
+        {
+            CancelInvoke("RotateFlipText");
+        }
+    }
+
+    void FadeOutFlipText()
+    {
+        if (flipText.GetComponent<TMP_Text>().alpha > 0)
+        {
+            flipText.GetComponent<TMP_Text>().alpha -= Time.deltaTime;
+        }
+        else
+        {
+            CancelInvoke("FadeOutFlipText");
+        }
+    }
+    #endregion
 }
