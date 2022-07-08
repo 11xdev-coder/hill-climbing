@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class DriverDown : MonoBehaviour
 {
-    public HingeJoint2D connectedToCarPart;
-    public Rigidbody2D partToConnect;
+    public Transform[] allPartsToDisconnect;
 
     public WheelJoint2D frontTire;
     public WheelJoint2D backTire;
@@ -25,7 +24,8 @@ public class DriverDown : MonoBehaviour
     public Transform[] partsToChangeLayer;
     public string afterDDmaskName;
 
-    public int index = -1;
+    public int layerIndex = -1;
+    public int disconnectIndex = -1;
 
     void Start()
     {
@@ -40,7 +40,13 @@ public class DriverDown : MonoBehaviour
             {
                 if (col.transform.CompareTag("Terrain"))
                 {
-                    connectedToCarPart.connectedBody = partToConnect;
+                    foreach (Transform t in allPartsToDisconnect)
+                    {
+                        disconnectIndex++;
+                        allPartsToDisconnect[disconnectIndex].GetComponent<DisconnectHingeJoint>().Disconnect();
+                    }
+
+                    GetComponent<DisconnectHingeJoint>().Disconnect();
                     frontTire.useMotor = false;
                     backTire.useMotor = false;
 
@@ -54,8 +60,8 @@ public class DriverDown : MonoBehaviour
                     hud.gameObject.SetActive(false);
                     foreach (Transform t in partsToChangeLayer)
                     {
-                        index++;
-                        partsToChangeLayer[index].gameObject.layer = LayerMask.NameToLayer(afterDDmaskName);
+                        layerIndex++;
+                        partsToChangeLayer[layerIndex].gameObject.layer = LayerMask.NameToLayer(afterDDmaskName);
                     }
                 }
             }
