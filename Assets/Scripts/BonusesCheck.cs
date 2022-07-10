@@ -61,6 +61,7 @@ public class BonusesCheck : MonoBehaviour
                 isRotatedAirTimeText = true;
             }
             AirTimeBonus();
+            return;
         }
         else
         {
@@ -78,6 +79,7 @@ public class BonusesCheck : MonoBehaviour
                 isRotatedWheelieText = true;
             }
             WheelieBonus();
+            return;
         }
         else
         {
