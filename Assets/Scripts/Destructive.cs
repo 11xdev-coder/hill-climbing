@@ -30,7 +30,7 @@ public class Destructive : MonoBehaviour
                     connectedObjectRB.connectedBody = null;
                     isDetached = true;
                     AS.Play();
-                    GetComponent<PolygonCollider2D>().enabled = false;
+                    StartCoroutine("destroyPart");
                 }
             }
         }
@@ -48,9 +48,20 @@ public class Destructive : MonoBehaviour
                     connectedObjectRB.connectedBody = null;
                     isDetached = true;
                     AS.Play();
-                    GetComponent<PolygonCollider2D>().enabled = false;
+                    StartCoroutine("destroyPart");
                 }
             }
         }
+    }
+
+
+    IEnumerator destroyPart()
+    {
+        GetComponent<PolygonCollider2D>().enabled = false;
+        GetComponent<HingeJoint2D>().enabled = false;
+
+        yield return new WaitForSeconds(3f);
+
+        Destroy(gameObject);
     }
 }

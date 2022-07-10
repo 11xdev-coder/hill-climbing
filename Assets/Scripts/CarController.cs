@@ -83,7 +83,7 @@ public class CarController : MonoBehaviour
             frontTire.motor = frontMotor;
             backTire.motor = backMotor;
 
-            GetComponent<Rigidbody2D>().AddTorque(carRotationSpeed * movement * 1);
+            GetComponent<Rigidbody2D>().AddTorque(carRotationSpeed * movement);
         }
         else
         {

@@ -25,6 +25,7 @@ public class BonusesCheck : MonoBehaviour
     public float startFlipAngleZ = float.NaN;
     public int totalFlips;
     public GameObject flipText;
+    public bool isRotatedFlipText = false;
 
     public int textRotSpeed = 150;
     // Start is called before the first frame update
@@ -96,19 +97,34 @@ public class BonusesCheck : MonoBehaviour
                 startFlipAngleZ = carDef.transform.rotation.z;
             }
 
-            if (carDef.transform.rotation.z >= startFlipAngleZ + 0.25f)
+            if (carDef.transform.rotation.z >= startFlipAngleZ + 0.35f)
             {
+                if (!isRotatedFlipText)
+                {
+                    flipText.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 55));
+                    flipText.transform.localScale = new Vector3(1, 1, 1);
+                    isRotatedFlipText = true;
+                }
                 FlipBonus();
                 startFlipAngleZ = float.NaN;
             }
-            else if (carDef.transform.rotation.z <= startFlipAngleZ - 0.25f)
+            else if (carDef.transform.rotation.z <= startFlipAngleZ - 0.35f)
             {
+                if (!isRotatedFlipText)
+                {
+                    flipText.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 55));
+                    flipText.transform.localScale = new Vector3(1, 1, 1);
+                    isRotatedFlipText = true;
+                }
                 FlipBonus();
                 startFlipAngleZ = float.NaN;
             }
         }
         else
         {
+            isRotatedFlipText = false;
+            CancelInvoke("SizeFlipText");
+            CancelInvoke("RotateFlipText");
             InvokeRepeating("FadeOutFlipText", 0.4f, Time.deltaTime);
             startFlipAngleZ = float.NaN;
         }
