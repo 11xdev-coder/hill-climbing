@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BonusesCheck : MonoBehaviour
 {
+    // defining car and wheels
     public WheelAirTime frontTireDef;
     public WheelAirTime backTireDef;
     public CarController carDef;
@@ -31,106 +32,72 @@ public class BonusesCheck : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // invoking functions for bonuses and flips
         InvokeRepeating("CheckForBonuses", 1, 1);
         InvokeRepeating("FlipCheck", 0.1f, 0.1f);
-
+        
+        // setting active bonus splashes
         airTimeText.gameObject.SetActive(true);
         wheelieText.gameObject.SetActive(true);
         flipText.gameObject.SetActive(true);
-
+        
+        // setting bonus splashes's alpha to zero
         airTimeText.GetComponent<TMP_Text>().alpha = 0;
         wheelieText.GetComponent<TMP_Text>().alpha = 0;
         flipText.GetComponent<TMP_Text>().alpha = 0;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     #region BonusCheck
     void CheckForBonuses()
     {
+        // checking if both of wheels are in air and car is also in air
         if (frontTireDef.isInAir == true && backTireDef.isInAir == true && carDef.isCarInAir == true)
         {
+            // check "is air time splash text rotated?"
             if (!isRotatedAirTimeText)
             {
+                // if not, rotating it and scaling it
                 airTimeText.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 55));
                 airTimeText.transform.localScale = new Vector3(1, 1, 1);
                 isRotatedAirTimeText = true;
             }
+            // calling air time bonus func
             AirTimeBonus();
+            // exitting from function
             return;
         }
         else
         {
+            // if car not in air, we fade out air time splash text
             InvokeRepeating("FadeOutAirTimeText", 0.4f, Time.deltaTime);
             currentAirTime = 0;
             isRotatedAirTimeText = false;
         }
-
+        // checking if car's back wheel isn't in air, but front wheel and car is
         if (frontTireDef.isInAir == true && backTireDef.isInAir == false && carDef.isCarInAir == true)
         {
+            // check "is wheelie splash text rotated?"
             if (!isRotatedWheelieText)
             {
+                // if not, rotating it and scaling it
                 wheelieText.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 15));
                 wheelieText.transform.localScale = new Vector3(1, 1, 1);
                 isRotatedWheelieText = true;
             }
+            // calling wheelie bonus func
             WheelieBonus();
+            // exiting from function
             return;
         }
         else
         {
+            // if front wheel or car isn't in air, fading out wheelie splash text
             InvokeRepeating("FadeOutWheelieText", 0.4f, Time.deltaTime);
             currentWheelie = 0;
             isRotatedWheelieText = false;
         }
     }
 #endregion
-
-    void FlipCheck()
-    {
-        if (frontTireDef.isInAir == true && backTireDef.isInAir == true && carDef.isCarInAir == true)
-        {
-            if (float.IsNaN(startFlipAngleZ))
-            {
-                startFlipAngleZ = carDef.transform.rotation.z;
-            }
-
-            if (carDef.transform.rotation.z >= startFlipAngleZ + 0.35f)
-            {
-                if (!isRotatedFlipText)
-                {
-                    flipText.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 55));
-                    flipText.transform.localScale = new Vector3(1, 1, 1);
-                    isRotatedFlipText = true;
-                }
-                FlipBonus();
-                startFlipAngleZ = float.NaN;
-            }
-            else if (carDef.transform.rotation.z <= startFlipAngleZ - 0.35f)
-            {
-                if (!isRotatedFlipText)
-                {
-                    flipText.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 55));
-                    flipText.transform.localScale = new Vector3(1, 1, 1);
-                    isRotatedFlipText = true;
-                }
-                FlipBonus();
-                startFlipAngleZ = float.NaN;
-            }
-        }
-        else
-        {
-            isRotatedFlipText = false;
-            CancelInvoke("SizeFlipText");
-            CancelInvoke("RotateFlipText");
-            InvokeRepeating("FadeOutFlipText", 0.4f, Time.deltaTime);
-            startFlipAngleZ = float.NaN;
-        }
-    }
 
     #region AirTime
     void AirTimeBonus()
@@ -298,6 +265,59 @@ public class BonusesCheck : MonoBehaviour
         else
         {
             CancelInvoke("FadeOutFlipText");
+        }
+    }
+    
+    void FlipCheck()
+    {
+        // checking if car in air
+        if (frontTireDef.isInAir == true && backTireDef.isInAir == true && carDef.isCarInAir == true)
+        {
+            // checking if flip start angle is null
+            if (float.IsNaN(startFlipAngleZ))
+            {
+                // if yes, setting it to car's z pos
+                startFlipAngleZ = carDef.transform.rotation.z;
+            }
+            
+            // checking if car's z pos bigger than flip start pos by 330 degrees (front flip)
+            if (carDef.transform.rotation.z >= startFlipAngleZ + 0.35f)
+            {
+                // checking "is flip splash text rotated?"
+                if (!isRotatedFlipText)
+                {
+                    // rotating and scaling it
+                    flipText.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 55));
+                    flipText.transform.localScale = new Vector3(1, 1, 1);
+                    isRotatedFlipText = true;
+                }
+                // calling flip bonus func
+                FlipBonus();
+                // setting flip start angle to null
+                startFlipAngleZ = float.NaN;
+            }
+            // checking if z pos less than flip start pos by 330 degrees (back flip)
+            else if (carDef.transform.rotation.z <= startFlipAngleZ - 0.35f)
+            {
+                // doing same thing as front flip
+                if (!isRotatedFlipText)
+                {
+                    flipText.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 55));
+                    flipText.transform.localScale = new Vector3(1, 1, 1);
+                    isRotatedFlipText = true;
+                }
+                FlipBonus();
+                startFlipAngleZ = float.NaN;
+            }
+        }
+        else
+        {
+            // if car didn't do any flips, fading out text
+            isRotatedFlipText = false;
+            CancelInvoke("SizeFlipText");
+            CancelInvoke("RotateFlipText");
+            InvokeRepeating("FadeOutFlipText", 0.4f, Time.deltaTime);
+            startFlipAngleZ = float.NaN;
         }
     }
     #endregion

@@ -17,7 +17,7 @@ public class DriverDown : MonoBehaviour
 
     public Transform driverDownImage;
 
-    public FuelMeter fuelMeter;
+    public CarController cc;
 
     public Transform hud;
 
@@ -34,7 +34,7 @@ public class DriverDown : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (!fuelMeter.cantBeDD)
+        if (!cc.cantBeDDtext)
         {
             if (!isDriverDown)
             {

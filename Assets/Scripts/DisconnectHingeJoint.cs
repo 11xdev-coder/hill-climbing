@@ -9,6 +9,7 @@ public class DisconnectHingeJoint : MonoBehaviour
 
     public void Disconnect()
     {
+        // connecting hinge joint part to another one
         origPart.connectedBody = partToConnect;
     }
 }

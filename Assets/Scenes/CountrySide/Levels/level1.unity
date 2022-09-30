@@ -2013,6 +2013,7 @@ GameObject:
   - component: {fileID: 277482704}
   - component: {fileID: 277482703}
   - component: {fileID: 277482696}
+  - component: {fileID: 277482706}
   m_Layer: 0
   m_Name: CarBase
   m_TagString: Untagged
@@ -2087,10 +2088,17 @@ MonoBehaviour:
   torqueB: 5000
   movement: 0
   carRotationSpeed: 8
+  rb: {fileID: 0}
   isCarInAir: 1
   fuel: 1
   fuelDecrease: 0.002
   fuelMeter: {fileID: 469963223}
+  isOutofFuel: 0
+  outOfFuelTransform: {fileID: 2119930344}
+  vo_OutOfFuel: {fileID: 277482706}
+  isOutofFuelPlayed: 0
+  cantBeDDtext: 0
+  driverDownScript: {fileID: 2051047039}
   hud: {fileID: 1297658766}
 --- !u!235 &277482698
 WheelJoint2D:
@@ -2316,129 +2324,13 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.9608002, y: 0.6126175}
   m_EdgeRadius: 0
---- !u!1 &322335640
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 322335641}
-  - component: {fileID: 322335642}
-  m_Layer: 0
-  m_Name: KPH
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &322335641
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 322335640}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 149.9, y: -59, z: 3020020.8}
-  m_LocalScale: {x: 35, y: 35, z: 88.8191}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 669285119}
-  - {fileID: 581798872}
-  m_Father: {fileID: 1297658766}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &322335642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 322335640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b757dc371616dc4ab7e75c234822dc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 277482695}
-  maxSpeed: 110
-  minSpeedNeedleAngle: 115
-  maxSpeedNeedleAngle: -200
-  needle: {fileID: 581798872}
---- !u!1 &469963221
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 469963222}
-  - component: {fileID: 469963223}
-  - component: {fileID: 469963224}
-  m_Layer: 5
-  m_Name: Fuel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &469963222
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 469963221}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2032245469}
-  - {fileID: 1457216708}
-  m_Father: {fileID: 1297658766}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -118.6, y: -70.6}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0, y: 0.5}
---- !u!114 &469963223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 469963221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8244f9687b1f08e44a021081985d74b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fuel: 0
-  maxFuel: 1
-  minFuelNeedleAngle: 90
-  maxFuelNeedleAngle: -90
-  needle: {fileID: 1457216708}
-  isOutOfFuel: 0
-  outOfFuelTransform: {fileID: 2119930344}
-  vo_OutOfFuel: {fileID: 469963224}
-  clip: {fileID: 8300000, guid: 693b5248995f3804e97825e39f1e889d, type: 3}
-  driverDown: {fileID: 2051047039}
-  target: {fileID: 277482695}
-  cantBeDD: 0
-  hud: {fileID: 1297658766}
---- !u!82 &469963224
+--- !u!82 &277482706
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 469963221}
+  m_GameObject: {fileID: 277482694}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -2528,6 +2420,113 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &322335640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 322335641}
+  - component: {fileID: 322335642}
+  m_Layer: 0
+  m_Name: KPH
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &322335641
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322335640}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 149.9, y: -59, z: 3020020.8}
+  m_LocalScale: {x: 35, y: 35, z: 88.8191}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 669285119}
+  - {fileID: 581798872}
+  m_Father: {fileID: 1297658766}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &322335642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322335640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b757dc371616dc4ab7e75c234822dc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 277482695}
+  maxSpeed: 110
+  minSpeedNeedleAngle: 115
+  maxSpeedNeedleAngle: -200
+  needle: {fileID: 581798872}
+--- !u!1 &469963221
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 469963222}
+  - component: {fileID: 469963223}
+  m_Layer: 5
+  m_Name: Fuel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &469963222
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 469963221}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2032245469}
+  - {fileID: 1457216708}
+  m_Father: {fileID: 1297658766}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -118.6, y: -70.6}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &469963223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 469963221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8244f9687b1f08e44a021081985d74b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fuel: 0
+  maxFuel: 1
+  minFuelNeedleAngle: 90
+  maxFuelNeedleAngle: -90
+  needle: {fileID: 1457216708}
 --- !u!1 &487899813
 GameObject:
   m_ObjectHideFlags: 0
@@ -7145,7 +7144,7 @@ MonoBehaviour:
   ASvo: {fileID: 2051047044}
   isDriverDown: 0
   driverDownImage: {fileID: 834230666}
-  fuelMeter: {fileID: 469963223}
+  cc: {fileID: 277482697}
   hud: {fileID: 1297658766}
   partsToChangeLayer:
   - {fileID: 277482701}

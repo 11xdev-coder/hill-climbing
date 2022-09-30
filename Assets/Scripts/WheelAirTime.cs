@@ -15,9 +15,4 @@ public class WheelAirTime : MonoBehaviour
     {
         isInAir = false;
     }
-
-    public void Update()
-    {
-
-    }
 }
