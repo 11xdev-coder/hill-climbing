@@ -171,7 +171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 96637765}
   m_Layer: 0
-  m_Name: chestspot
+  m_Name: chestspot2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -192,7 +192,7 @@ Transform:
   - {fileID: 256439384}
   - {fileID: 332315802}
   m_Father: {fileID: 2084352818}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &146268619
 GameObject:
@@ -507,7 +507,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 765348759}
         m_TargetAssemblyTypeName: ChestSystem, Assembly-CSharp
-        m_MethodName: OpenChest
+        m_MethodName: OpenSecondChest
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1194,6 +1194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1254a24586fc058489b58bd3a825029d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedChestRarity: 0
   firstChestRarity: 0
   secondChestRarity: 0
   thirdChestRarity: 0
@@ -1509,7 +1510,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 765348759}
         m_TargetAssemblyTypeName: ChestSystem, Assembly-CSharp
-        m_MethodName: OpenChest
+        m_MethodName: OpenFirstChest
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1643,7 +1644,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1143498462}
   m_Layer: 0
-  m_Name: chestspot (1)
+  m_Name: chestslot3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1657,14 +1658,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1143498461}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.625, y: 4.2833347, z: 0}
-  m_LocalScale: {x: 1.4721874, y: 1.9629171, z: 0}
+  m_LocalPosition: {x: -4.625, y: 4.283336, z: 0}
+  m_LocalScale: {x: 1.4721874, y: 1.9629172, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 891552863}
   - {fileID: 1635388369}
   m_Father: {fileID: 2084352818}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1185163843
 GameObject:
@@ -2098,7 +2099,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1605519014}
   m_Layer: 0
-  m_Name: chestspot (2)
+  m_Name: chestslot1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2119,7 +2120,7 @@ Transform:
   - {fileID: 285371734}
   - {fileID: 1029676565}
   m_Father: {fileID: 2084352818}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1635388368
 GameObject:
@@ -2206,7 +2207,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 765348759}
         m_TargetAssemblyTypeName: ChestSystem, Assembly-CSharp
-        m_MethodName: OpenChest
+        m_MethodName: OpenThirdChest
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2983,9 +2984,9 @@ RectTransform:
   m_LocalScale: {x: 80.000015, y: 60, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1605519014}
   - {fileID: 96637765}
   - {fileID: 1143498462}
-  - {fileID: 1605519014}
   m_Father: {fileID: 1185163844}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

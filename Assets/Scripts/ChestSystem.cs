@@ -1,132 +1,220 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
+using Image = UnityEngine.UI.Image;
 
 public class ChestSystem : MonoBehaviour
 {
-    public Nullable<chestRarity> selectedChestRarity;
-    public chestRarity firstChestRarity;
-    public chestRarity secondChestRarity;
-    public chestRarity thirdChestRarity;
+    [Header("Chest Rarities")]
+    public ChestRarity selectedChestRarity;
+    public ChestRarity firstChestRarity;
+    public ChestRarity secondChestRarity;
+    public ChestRarity thirdChestRarity;
+    
+    [Header("Chest Slots")]
+    public Slot firstSlot;
+    public Slot secondSlot;
+    public Slot thirdSlot;
+    
+    [Header("Chest Button Transforms")]
+    public GameObject firstChestTransform;
+    public GameObject secondChestTransform;
+    public GameObject thirdChestTransform;
 
-    public slot firstSlot;
-    public slot secondSlot;
-    public slot thirdSlot;
-
-    public GameObject[] chestSlots = new GameObject[3];
+    // public GameObject[] chestSlots = new GameObject[3];
 
     public void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        // checking if slot are empty
+        // 1st slot
+        if (firstSlot == Slot.Empty)
         {
-            selectedChestRarity = GetClosestChest();
-            OpenChest();
+            firstChestTransform.GetComponent<Image>().enabled = false;
+        }
+        else if (firstSlot == Slot.HasChest)
+        {
+            firstChestTransform.GetComponent<Image>().enabled = true;
+        }
+        
+        // 2nd slot
+        if (secondSlot == Slot.Empty)
+        {
+            secondChestTransform.GetComponent<Image>().enabled = false;
+        }
+        else if (secondSlot == Slot.HasChest)
+        {
+            secondChestTransform.GetComponent<Image>().enabled = true;
+        }
+        
+        // 3rd slot
+        if (thirdSlot == Slot.Empty)
+        {
+            thirdChestTransform.GetComponent<Image>().enabled = false;
+        }
+        else if (thirdSlot == Slot.HasChest)
+        {
+            thirdChestTransform.GetComponent<Image>().enabled = true;
         }
     }
-    
+
     public void AddChestToSlot()
     {
-        if (firstSlot == slot.empty && secondSlot == slot.empty && thirdSlot == slot.empty)
+        // for loop to check all the slots
+        for (int s = 0; s <= 2; s++)
         {
-            firstSlot = slot.hasChest;
-            firstChestRarity = (chestRarity) Random.Range(0, 6);
+            // we are on 1st slot
+            if (s == 0)
+            {
+                // is 1st slot empty?
+                if (firstSlot == Slot.Empty)
+                {
+                    firstSlot = Slot.HasChest;
+                    firstChestRarity = (ChestRarity) Random.Range(0, 6);
+                    break;
+                }
+            }
+            // we are on 2nd slot
+            else if (s == 1)
+            {
+                // is 2nd slot empty?
+                if (secondSlot == Slot.Empty)
+                {
+                    secondSlot = Slot.HasChest;
+                    secondChestRarity = (ChestRarity) Random.Range(0, 6);
+                    break;
+                }
+            }
+            // we are on 3rd slot
+            else if (s == 2)
+            {
+                // is 3rd slot empty?
+                if (thirdSlot == Slot.Empty)
+                {
+                    thirdSlot = Slot.HasChest;
+                    thirdChestRarity = (ChestRarity) Random.Range(0, 6);
+                    break;
+                }
+            }
         }
         
-        else if (firstSlot == slot.hasChest && secondSlot == slot.empty && thirdSlot == slot.empty)
-        {
-            secondSlot = slot.hasChest;
-            secondChestRarity = (chestRarity) Random.Range(0, 6);
-        }
-        
-        else if (firstSlot == slot.hasChest && secondSlot == slot.hasChest && thirdSlot == slot.empty)
-        {
-            thirdSlot = slot.hasChest;
-            thirdChestRarity = (chestRarity) Random.Range(0, 6);
-        }
-        
-        else if (firstSlot == slot.hasChest && secondSlot == slot.hasChest && thirdSlot == slot.hasChest)
+        // are all slots has chest?
+        if (firstSlot == Slot.HasChest && secondSlot == Slot.HasChest && thirdSlot == Slot.HasChest)
         {
             Debug.Log("ur full");
         }
     }
 
-    public Nullable<chestRarity> GetClosestChest()
+    // public chestRarity GetClosestChest()
+    // {
+    //     for (int c = 0; c < chestSlots.Length; c++)
+    //     {
+    //         if (Vector2.Distance(chestSlots[c].gameObject.transform.position, Input.mousePosition) <= 32)
+    //         {
+    //             if (c == 0)
+    //             {
+    //                 firstSlot = slot.empty;
+    //                 return firstChestRarity;
+    //             }
+    //             if (c == 1)
+    //             {
+    //                 secondSlot = slot.empty;
+    //                 return secondChestRarity;
+    //             }
+    //             if (c == 2)
+    //             {
+    //                 thirdSlot = slot.empty;
+    //                 return thirdChestRarity;
+    //             }
+    //         }
+    //     }
+    //     
+    //     return 0;
+    // }    dont work
+
+    #region ChestOpenFuncs
+    public void OpenFirstChest()
     {
-        for (int c = 0; c < chestSlots.Length; c++)
-        {
-            if (Vector2.Distance(chestSlots[c].gameObject.transform.position, Input.mousePosition) <= 32)
-            {
-                if (c == 0)
-                {
-                    firstSlot = slot.empty;
-                    return firstChestRarity;
-                }
-                if (c == 1)
-                {
-                    secondSlot = slot.empty;
-                    return secondChestRarity;
-                }
-                if (c == 2)
-                {
-                    thirdSlot = slot.empty;
-                    return thirdChestRarity;
-                }
-            }
-        }
-        
-        return null;
+        selectedChestRarity = firstChestRarity;
+        firstSlot = Slot.Empty;
+        OpenChest();
     }
     
-    public void OpenChest()
+    public void OpenSecondChest()
+    {
+        selectedChestRarity = secondChestRarity;
+        secondSlot = Slot.Empty;
+        OpenChest();
+    }
+    
+    public void OpenThirdChest()
+    {
+        selectedChestRarity = thirdChestRarity;
+        thirdSlot = Slot.Empty;
+        OpenChest();
+    }
+    
+    private void OpenChest()
     {
         Debug.Log(selectedChestRarity);
-        if (selectedChestRarity == chestRarity.bronze)
+        // slot checks
+        if (firstSlot == Slot.Empty)
+        {
+            firstChestTransform.GetComponent<Image>().enabled = false;
+        }
+        else if (secondSlot == Slot.Empty)
+        {
+            secondChestTransform.GetComponent<Image>().enabled = false;
+        }
+        else if (thirdSlot == Slot.Empty)
+        {
+            thirdChestTransform.GetComponent<Image>().enabled = false;
+        }
+        // rarity checks
+        if (selectedChestRarity == ChestRarity.Bronze)
         {
             Debug.Log("5k coins");
         }
-        else if (selectedChestRarity == chestRarity.silver)
+        else if (selectedChestRarity == ChestRarity.Silver)
         {
             Debug.Log("9k coins");
         }
-        else if (selectedChestRarity == chestRarity.gold)
+        else if (selectedChestRarity == ChestRarity.Gold)
         {
             Debug.Log("13k coins");
         }
-        else if (selectedChestRarity == chestRarity.epic)
+        else if (selectedChestRarity == ChestRarity.Epic)
         {
             Debug.Log("22k coins");
         }
-        else if (selectedChestRarity == chestRarity.legend)
+        else if (selectedChestRarity == ChestRarity.Legend)
         {
             Debug.Log("29k coins");
         }
-        else if (selectedChestRarity == chestRarity.champion)
+        else if (selectedChestRarity == ChestRarity.Champion)
         {
             Debug.Log("50k coins");
         }
-        else if (selectedChestRarity == chestRarity.godly)
+        else if (selectedChestRarity == ChestRarity.Godly)
         {
             Debug.Log("65k coins");
         }
     }
+    
+    #endregion
 }
 
-public enum slot
+public enum Slot
 {
-    empty,
-    hasChest,
+    Empty,
+    HasChest,
 }
 
-public enum chestRarity
+public enum ChestRarity
 {
-    bronze, // 0
-    silver, // 1
-    gold, // 2
-    epic, // 3
-    legend, // 4
-    champion, // 5
-    godly // 6
+    Bronze, // 0
+    Silver, // 1
+    Gold, // 2
+    Epic, // 3
+    Legend, // 4
+    Champion, // 5
+    Godly // 6
 }
