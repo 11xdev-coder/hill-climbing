@@ -435,7 +435,7 @@ GameObject:
   - component: {fileID: 332315804}
   - component: {fileID: 332315803}
   m_Layer: 5
-  m_Name: chest
+  m_Name: chest2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1201,10 +1201,9 @@ MonoBehaviour:
   firstSlot: 0
   secondSlot: 0
   thirdSlot: 0
-  chestSlots:
-  - {fileID: 332315801}
-  - {fileID: 1635388368}
-  - {fileID: 1029676564}
+  firstChestTransform: {fileID: 1029676564}
+  secondChestTransform: {fileID: 332315801}
+  thirdChestTransform: {fileID: 1635388368}
 --- !u!1 &891552862
 GameObject:
   m_ObjectHideFlags: 0
@@ -2135,7 +2134,7 @@ GameObject:
   - component: {fileID: 1635388371}
   - component: {fileID: 1635388370}
   m_Layer: 5
-  m_Name: chest
+  m_Name: chest3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
