@@ -1,26 +1,53 @@
+using System;
+using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using Image = UnityEngine.UI.Image;
 
 public class ChestSystem : MonoBehaviour
 {
-    [Header("Chest Rarities")]
+    public GameObject MainHUD;
+    [Header("Chest Rarities")] 
     public ChestRarity selectedChestRarity;
     public ChestRarity firstChestRarity;
     public ChestRarity secondChestRarity;
     public ChestRarity thirdChestRarity;
-    
-    [Header("Chest Slots")]
+
+    [Header("Chest Slots")] 
     public Slot firstSlot;
     public Slot secondSlot;
     public Slot thirdSlot;
-    
-    [Header("Chest Button Transforms")]
+
+    [Header("Chest Button Transforms")] 
     public GameObject firstChestTransform;
     public GameObject secondChestTransform;
     public GameObject thirdChestTransform;
 
+    [Header("Chest Pop Up")]
+    public GameObject popUpPanel;
+    public TMP_Text popUpChestRarity;
+    public Image popUpChestImage;
+
+    [Header("Chest Sprites")] 
+    // public Sprite bronzeChest;
+    // public Sprite silverChest;
+    // public Sprite goldChest;
+    // public Sprite epicChest;
+    // public Sprite legendChest;
+    // public Sprite championChest;
+    // public Sprite godlyChest;
+    public Sprite[] chestSprites = new Sprite[7];
+
+    private bool full;
+
     // public GameObject[] chestSlots = new GameObject[3];
+
+    public void Start()
+    {
+        // initialization
+        popUpPanel.SetActive(false);
+        
+    }
 
     public void Update()
     {
@@ -69,6 +96,8 @@ public class ChestSystem : MonoBehaviour
                 {
                     firstSlot = Slot.HasChest;
                     firstChestRarity = (ChestRarity) Random.Range(0, 6);
+                    selectedChestRarity = firstChestRarity;
+                    firstChestTransform.GetComponent<Image>().sprite = chestSprites[(int) selectedChestRarity];
                     break;
                 }
             }
@@ -80,6 +109,8 @@ public class ChestSystem : MonoBehaviour
                 {
                     secondSlot = Slot.HasChest;
                     secondChestRarity = (ChestRarity) Random.Range(0, 6);
+                    selectedChestRarity = secondChestRarity;
+                    secondChestTransform.GetComponent<Image>().sprite = chestSprites[(int) selectedChestRarity];
                     break;
                 }
             }
@@ -91,15 +122,25 @@ public class ChestSystem : MonoBehaviour
                 {
                     thirdSlot = Slot.HasChest;
                     thirdChestRarity = (ChestRarity) Random.Range(0, 6);
+                    selectedChestRarity = thirdChestRarity;
+                    thirdChestTransform.GetComponent<Image>().sprite = chestSprites[(int) selectedChestRarity];
                     break;
                 }
             }
         }
-        
+
+        if (!full)
+        {
+            MainHUD.SetActive(false);
+            popUpPanel.SetActive(true);
+            popUpChestRarity.text = Convert.ToString(selectedChestRarity);
+            popUpChestImage.sprite = chestSprites[(int) selectedChestRarity];
+        }
+
         // are all slots has chest?
         if (firstSlot == Slot.HasChest && secondSlot == Slot.HasChest && thirdSlot == Slot.HasChest)
         {
-            Debug.Log("ur full");
+            full = true;
         }
     }
 
@@ -154,6 +195,7 @@ public class ChestSystem : MonoBehaviour
     
     private void OpenChest()
     {
+        full = false;
         Debug.Log(selectedChestRarity);
         // slot checks
         if (firstSlot == Slot.Empty)
