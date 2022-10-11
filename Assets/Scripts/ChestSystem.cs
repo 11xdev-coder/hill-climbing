@@ -6,7 +6,7 @@ using Image = UnityEngine.UI.Image;
 
 public class ChestSystem : MonoBehaviour
 {
-    public GameObject MainHUD;
+    public GameObject mainHUD;
     [Header("Chest Rarities")] 
     public ChestRarity selectedChestRarity;
     public ChestRarity firstChestRarity;
@@ -27,26 +27,27 @@ public class ChestSystem : MonoBehaviour
     public GameObject popUpPanel;
     public TMP_Text popUpChestRarity;
     public Image popUpChestImage;
+    public bool fadeInChestPopUp;
+    public CanvasGroup popUpPanelCG;
 
-    [Header("Chest Sprites")] 
-    // public Sprite bronzeChest;
-    // public Sprite silverChest;
-    // public Sprite goldChest;
-    // public Sprite epicChest;
-    // public Sprite legendChest;
-    // public Sprite championChest;
-    // public Sprite godlyChest;
+    [Header("Chest Sprites")]
     public Sprite[] chestSprites = new Sprite[7];
 
-    private bool full;
+    [Header("SFX")] 
+    public AudioClip unlockedSfx;
 
-    // public GameObject[] chestSlots = new GameObject[3];
+    private bool _full;
 
+    public void HidePopUpPanel()
+    {
+        fadeInChestPopUp = true;
+    }
+    
     public void Start()
     {
         // initialization
         popUpPanel.SetActive(false);
-        
+        popUpPanel.GetComponent<CanvasGroup>().alpha = 0;
     }
 
     public void Update()
@@ -80,6 +81,17 @@ public class ChestSystem : MonoBehaviour
         else if (thirdSlot == Slot.HasChest)
         {
             thirdChestTransform.GetComponent<Image>().enabled = true;
+        }
+        
+        // pop up panel FadeIn function
+        if (fadeInChestPopUp)
+        {
+            if (popUpPanelCG.alpha < 1)
+            {
+                popUpPanelCG.alpha += Time.deltaTime;
+                if (popUpPanelCG.alpha >= 1)
+                    fadeInChestPopUp = false;
+            }
         }
     }
 
@@ -129,47 +141,22 @@ public class ChestSystem : MonoBehaviour
             }
         }
 
-        if (!full)
+        if (!_full)
         {
-            MainHUD.SetActive(false);
+            mainHUD.SetActive(false);
             popUpPanel.SetActive(true);
             popUpChestRarity.text = Convert.ToString(selectedChestRarity);
             popUpChestImage.sprite = chestSprites[(int) selectedChestRarity];
+            AudioSource.PlayClipAtPoint(unlockedSfx, new Vector3(0,0,0));
+            fadeInChestPopUp = true;
         }
 
         // are all slots has chest?
         if (firstSlot == Slot.HasChest && secondSlot == Slot.HasChest && thirdSlot == Slot.HasChest)
         {
-            full = true;
+            _full = true;
         }
     }
-
-    // public chestRarity GetClosestChest()
-    // {
-    //     for (int c = 0; c < chestSlots.Length; c++)
-    //     {
-    //         if (Vector2.Distance(chestSlots[c].gameObject.transform.position, Input.mousePosition) <= 32)
-    //         {
-    //             if (c == 0)
-    //             {
-    //                 firstSlot = slot.empty;
-    //                 return firstChestRarity;
-    //             }
-    //             if (c == 1)
-    //             {
-    //                 secondSlot = slot.empty;
-    //                 return secondChestRarity;
-    //             }
-    //             if (c == 2)
-    //             {
-    //                 thirdSlot = slot.empty;
-    //                 return thirdChestRarity;
-    //             }
-    //         }
-    //     }
-    //     
-    //     return 0;
-    // }    dont work
 
     #region ChestOpenFuncs
     public void OpenFirstChest()
@@ -192,10 +179,15 @@ public class ChestSystem : MonoBehaviour
         thirdSlot = Slot.Empty;
         OpenChest();
     }
+
+    public void ShowChestUI()
+    {
+        
+    }
     
     private void OpenChest()
     {
-        full = false;
+        _full = false;
         Debug.Log(selectedChestRarity);
         // slot checks
         if (firstSlot == Slot.Empty)
@@ -210,6 +202,7 @@ public class ChestSystem : MonoBehaviour
         {
             thirdChestTransform.GetComponent<Image>().enabled = false;
         }
+        
         // rarity checks
         if (selectedChestRarity == ChestRarity.Bronze)
         {
