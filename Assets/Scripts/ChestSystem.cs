@@ -14,6 +14,7 @@ public class ChestSystem : MonoBehaviour
     public ChestRarity thirdChestRarity;
 
     [Header("Chest Slots")] 
+    public byte selectedSlotIndex;
     public Slot firstSlot;
     public Slot secondSlot;
     public Slot thirdSlot;
@@ -30,11 +31,20 @@ public class ChestSystem : MonoBehaviour
     public bool fadeInChestPopUp;
     public CanvasGroup popUpPanelCG;
 
-    [Header("Chest Sprites")]
-    public Sprite[] chestSprites = new Sprite[7];
-
+    [Header("Chest Preview UI")]
+    public GameObject previewPanel;
+    public TMP_Text previewChestRarity;
+    public Image previewChestImage;
+    public TMP_Text previewChestnuts;
+    
     [Header("SFX")] 
     public AudioClip unlockedSfx;
+
+    [Header("Chest Arrays")]
+    public Sprite[] chestSprites = new Sprite[7];
+    public int[] chestnutsAmounts = new int[7];
+
+    
 
     private bool _full;
 
@@ -48,6 +58,7 @@ public class ChestSystem : MonoBehaviour
         // initialization
         popUpPanel.SetActive(false);
         popUpPanel.GetComponent<CanvasGroup>().alpha = 0;
+        previewPanel.SetActive(false);
     }
 
     public void Update()
@@ -157,84 +168,56 @@ public class ChestSystem : MonoBehaviour
             _full = true;
         }
     }
-
-    #region ChestOpenFuncs
-    public void OpenFirstChest()
+    
+    #region ChestPreviewFuncs
+    public void PreviewFirstChest()
     {
+        previewPanel.SetActive(true);
+        previewChestRarity.text = Convert.ToString(firstChestRarity);
+        previewChestImage.sprite = chestSprites[(int) firstChestRarity];
         selectedChestRarity = firstChestRarity;
-        firstSlot = Slot.Empty;
-        OpenChest();
+        selectedSlotIndex = 1;
+        previewChestnuts.text = Convert.ToString(chestnutsAmounts[(int)firstChestRarity]);
     }
     
-    public void OpenSecondChest()
+    public void PreviewSecondChest()
     {
+        previewPanel.SetActive(true);
+        previewChestRarity.text = Convert.ToString(secondChestRarity);
+        previewChestImage.sprite = chestSprites[(int) secondChestRarity];
         selectedChestRarity = secondChestRarity;
-        secondSlot = Slot.Empty;
-        OpenChest();
+        selectedSlotIndex = 2;
+        previewChestnuts.text = Convert.ToString(chestnutsAmounts[(int)secondChestRarity]);
     }
     
-    public void OpenThirdChest()
+    public void PreviewThirdChest()
     {
+        previewPanel.SetActive(true);
+        previewChestRarity.text = Convert.ToString(thirdChestRarity);
+        previewChestImage.sprite = chestSprites[(int) thirdChestRarity];
         selectedChestRarity = thirdChestRarity;
-        thirdSlot = Slot.Empty;
-        OpenChest();
+        selectedSlotIndex = 3;
+        previewChestnuts.text = Convert.ToString(chestnutsAmounts[(int)thirdChestRarity]);
     }
-
-    public void ShowChestUI()
-    {
-        
-    }
+    #endregion
     
-    private void OpenChest()
+    public void OpenChest()
     {
         _full = false;
-        Debug.Log(selectedChestRarity);
-        // slot checks
-        if (firstSlot == Slot.Empty)
-        {
+        if (selectedSlotIndex == 1) {
+            firstSlot = Slot.Empty;
             firstChestTransform.GetComponent<Image>().enabled = false;
         }
-        else if (secondSlot == Slot.Empty)
-        {
+        else if (selectedSlotIndex == 2) {
+            secondSlot = Slot.Empty;
             secondChestTransform.GetComponent<Image>().enabled = false;
         }
-        else if (thirdSlot == Slot.Empty)
-        {
+        else if (selectedSlotIndex == 3) {
+            thirdSlot = Slot.Empty;
             thirdChestTransform.GetComponent<Image>().enabled = false;
         }
-        
-        // rarity checks
-        if (selectedChestRarity == ChestRarity.Bronze)
-        {
-            Debug.Log("5k coins");
-        }
-        else if (selectedChestRarity == ChestRarity.Silver)
-        {
-            Debug.Log("9k coins");
-        }
-        else if (selectedChestRarity == ChestRarity.Gold)
-        {
-            Debug.Log("13k coins");
-        }
-        else if (selectedChestRarity == ChestRarity.Epic)
-        {
-            Debug.Log("22k coins");
-        }
-        else if (selectedChestRarity == ChestRarity.Legend)
-        {
-            Debug.Log("29k coins");
-        }
-        else if (selectedChestRarity == ChestRarity.Champion)
-        {
-            Debug.Log("50k coins");
-        }
-        else if (selectedChestRarity == ChestRarity.Godly)
-        {
-            Debug.Log("65k coins");
-        }
+        previewPanel.SetActive(false);
     }
-    
-    #endregion
 }
 
 public enum Slot
