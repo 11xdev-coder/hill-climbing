@@ -36,6 +36,7 @@ public class ChestSystem : MonoBehaviour
     public TMP_Text previewChestRarity;
     public Image previewChestImage;
     public TMP_Text previewChestnuts;
+    public TMP_Text previewShinyCoins;
     
     [Header("SFX")] 
     public AudioClip unlockedSfx;
@@ -43,6 +44,7 @@ public class ChestSystem : MonoBehaviour
     [Header("Chest Arrays")]
     public Sprite[] chestSprites = new Sprite[7];
     public int[] chestnutsAmounts = new int[7];
+    public int[] shinyCoinsAmounts = new int[7];
 
     
 
@@ -177,6 +179,7 @@ public class ChestSystem : MonoBehaviour
         previewChestImage.sprite = chestSprites[(int) firstChestRarity];
         selectedChestRarity = firstChestRarity;
         selectedSlotIndex = 1;
+        previewShinyCoins.text = Convert.ToString(shinyCoinsAmounts[(int)firstChestRarity]);
         previewChestnuts.text = Convert.ToString(chestnutsAmounts[(int)firstChestRarity]);
     }
     
@@ -188,6 +191,7 @@ public class ChestSystem : MonoBehaviour
         selectedChestRarity = secondChestRarity;
         selectedSlotIndex = 2;
         previewChestnuts.text = Convert.ToString(chestnutsAmounts[(int)secondChestRarity]);
+        previewShinyCoins.text = Convert.ToString(shinyCoinsAmounts[(int)secondChestRarity]);
     }
     
     public void PreviewThirdChest()
@@ -198,6 +202,7 @@ public class ChestSystem : MonoBehaviour
         selectedChestRarity = thirdChestRarity;
         selectedSlotIndex = 3;
         previewChestnuts.text = Convert.ToString(chestnutsAmounts[(int)thirdChestRarity]);
+        previewShinyCoins.text = Convert.ToString(shinyCoinsAmounts[(int)thirdChestRarity]);
     }
     #endregion
     
