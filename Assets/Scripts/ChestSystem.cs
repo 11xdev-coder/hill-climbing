@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -37,7 +38,12 @@ public class ChestSystem : MonoBehaviour
     public Image previewChestImage;
     public TMP_Text previewChestnuts;
     public TMP_Text previewShinyCoins;
-    
+
+    [Header("Chest openin")] 
+    public GameObject openinPanel;
+    public Image openinChest;
+    public Animator openinChestAnimator;
+
     [Header("SFX")] 
     public AudioClip unlockedSfx;
 
@@ -61,6 +67,7 @@ public class ChestSystem : MonoBehaviour
         popUpPanel.SetActive(false);
         popUpPanel.GetComponent<CanvasGroup>().alpha = 0;
         previewPanel.SetActive(false);
+        openinPanel.SetActive(false);
     }
 
     public void Update()
@@ -208,20 +215,27 @@ public class ChestSystem : MonoBehaviour
     
     public void OpenChest()
     {
+        mainHUD.SetActive(false);
         _full = false;
+        previewPanel.SetActive(false);
+        openinPanel.SetActive(true);
         if (selectedSlotIndex == 1) {
             firstSlot = Slot.Empty;
             firstChestTransform.GetComponent<Image>().enabled = false;
+            openinChest.sprite = chestSprites[(int) firstChestRarity];
         }
         else if (selectedSlotIndex == 2) {
             secondSlot = Slot.Empty;
             secondChestTransform.GetComponent<Image>().enabled = false;
+            openinChest.sprite = chestSprites[(int) secondChestRarity];
         }
         else if (selectedSlotIndex == 3) {
             thirdSlot = Slot.Empty;
             thirdChestTransform.GetComponent<Image>().enabled = false;
+            openinChest.sprite = chestSprites[(int) thirdChestRarity];
         }
-        previewPanel.SetActive(false);
+
+        openinChestAnimator.Play("chestopening", -1, 0f);
     }
 }
 

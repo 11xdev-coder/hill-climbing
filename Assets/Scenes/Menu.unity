@@ -211,7 +211,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &137309386
 RectTransform:
   m_ObjectHideFlags: 0
@@ -941,7 +941,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &363163921
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1866,6 +1866,9 @@ MonoBehaviour:
   previewChestImage: {fileID: 1138969593}
   previewChestnuts: {fileID: 268838916}
   previewShinyCoins: {fileID: 2033940289}
+  openinPanel: {fileID: 137309385}
+  openinChest: {fileID: 1949048877}
+  openinChestAnimator: {fileID: 1949048876}
   unlockedSfx: {fileID: 8300000, guid: 768e5c606aab08648ae16026701604a2, type: 3}
   chestSprites:
   - {fileID: 21300000, guid: 9cd4cf2f2d23b8740952a24952ef500f, type: 3}
