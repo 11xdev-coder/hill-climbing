@@ -43,6 +43,8 @@ public class ChestSystem : MonoBehaviour
     public GameObject openinPanel;
     public Image openinChest;
     public Animator openinChestAnimator;
+    public CanvasGroup whitePanel;
+    public bool whitePanelFadeIn;
 
     [Header("SFX")] 
     public AudioClip unlockedSfx;
@@ -68,6 +70,8 @@ public class ChestSystem : MonoBehaviour
         popUpPanel.GetComponent<CanvasGroup>().alpha = 0;
         previewPanel.SetActive(false);
         openinPanel.SetActive(false);
+        whitePanelFadeIn = false;
+        whitePanel.GetComponent<CanvasGroup>().alpha = 0;
     }
 
     public void Update()
@@ -111,6 +115,16 @@ public class ChestSystem : MonoBehaviour
                 popUpPanelCG.alpha += Time.deltaTime;
                 if (popUpPanelCG.alpha >= 1)
                     fadeInChestPopUp = false;
+            }
+        }
+        
+        if (whitePanelFadeIn)
+        {
+            if (whitePanel.alpha < 1)
+            {
+                whitePanel.alpha += Time.deltaTime;
+                if (whitePanel.alpha >= 1)
+                    whitePanelFadeIn = false;
             }
         }
     }
@@ -236,6 +250,7 @@ public class ChestSystem : MonoBehaviour
         }
 
         openinChestAnimator.Play("chestopening", -1, 0f);
+        whitePanelFadeIn = true;
     }
 }
 
