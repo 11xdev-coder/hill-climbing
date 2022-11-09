@@ -178,7 +178,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &38992485
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1110,7 +1110,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &363163921
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3090,7 +3090,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1538812164}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChestSystem, Assembly-CSharp
         m_MethodName: OpenChest
         m_Mode: 1
@@ -4017,8 +4017,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ccf29fcf2f6201e4fa160c8227ff49bf, type: 3}
   - {fileID: 21300000, guid: f9a6aa534710a4c448aa07d8f0414c84, type: 3}
   - {fileID: 21300000, guid: 54701d89fb0e77d41bb987f312477949, type: 3}
-  chestnutsAmounts: c4090000ac0d000088130000d43000007869000016a3000070110100
-  shinyCoinsAmounts: 0000000000000000050000000700000014000000640000007d000000
+  chestnutsAmounts: ac0d0000881300004c1d0000ce310000d85900008cb90000e8fd0000
+  shinyCoinsAmounts: 000000000000000001000000050000000a000000c800000064000000
 --- !u!1 &1586260444
 GameObject:
   m_ObjectHideFlags: 0
