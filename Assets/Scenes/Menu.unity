@@ -3090,10 +3090,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ChestSystem, Assembly-CSharp
-        m_MethodName: OpenChest
-        m_Mode: 1
+      - m_Target: {fileID: 38992484}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3101,6 +3101,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 363163920}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1148538400
 MonoBehaviour:
@@ -3997,7 +4009,7 @@ MonoBehaviour:
   popUpChestRarity: {fileID: 1347605981}
   popUpChestImage: {fileID: 1412651185}
   fadeInChestPopUp: 0
-  popUpPanelCG: {fileID: 367915976}
+  popUpPanelCg: {fileID: 367915976}
   previewPanel: {fileID: 330761711}
   previewChestRarity: {fileID: 1710585501}
   previewChestImage: {fileID: 1138969593}
@@ -4008,6 +4020,8 @@ MonoBehaviour:
   openinChestAnimator: {fileID: 1949048876}
   whitePanel: {fileID: 323259637}
   whitePanelFadeIn: 0
+  itemImage: {fileID: 651068361}
+  itemShowingPanel: {fileID: 38992484}
   unlockedSfx: {fileID: 8300000, guid: 768e5c606aab08648ae16026701604a2, type: 3}
   chestSprites:
   - {fileID: 21300000, guid: 9cd4cf2f2d23b8740952a24952ef500f, type: 3}

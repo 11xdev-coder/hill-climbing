@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -30,7 +29,7 @@ public class ChestSystem : MonoBehaviour
     public TMP_Text popUpChestRarity;
     public Image popUpChestImage;
     public bool fadeInChestPopUp;
-    public CanvasGroup popUpPanelCG;
+    public CanvasGroup popUpPanelCg;
 
     [Header("Chest Preview UI")]
     public GameObject previewPanel;
@@ -45,6 +44,10 @@ public class ChestSystem : MonoBehaviour
     public Animator openinChestAnimator;
     public CanvasGroup whitePanel;
     public bool whitePanelFadeIn;
+
+    [Header("Item showing")] 
+    public Image itemImage;
+    public GameObject itemShowingPanel;
 
     [Header("SFX")] 
     public AudioClip unlockedSfx;
@@ -66,12 +69,15 @@ public class ChestSystem : MonoBehaviour
     public void Start()
     {
         // initialization
-        popUpPanel.SetActive(false);
         popUpPanel.GetComponent<CanvasGroup>().alpha = 0;
+        whitePanel.GetComponent<CanvasGroup>().alpha = 0;
+        
         previewPanel.SetActive(false);
         openinPanel.SetActive(false);
+        popUpPanel.SetActive(false);
+        itemShowingPanel.SetActive(false);
+        
         whitePanelFadeIn = false;
-        whitePanel.GetComponent<CanvasGroup>().alpha = 0;
     }
 
     public void Update()
@@ -110,10 +116,10 @@ public class ChestSystem : MonoBehaviour
         // pop up panel FadeIn function
         if (fadeInChestPopUp)
         {
-            if (popUpPanelCG.alpha < 1)
+            if (popUpPanelCg.alpha < 1)
             {
-                popUpPanelCG.alpha += Time.deltaTime;
-                if (popUpPanelCG.alpha >= 1)
+                popUpPanelCg.alpha += Time.deltaTime;
+                if (popUpPanelCg.alpha >= 1)
                     fadeInChestPopUp = false;
             }
         }
@@ -124,7 +130,11 @@ public class ChestSystem : MonoBehaviour
             {
                 whitePanel.alpha += Time.deltaTime;
                 if (whitePanel.alpha >= 1)
+                {
                     whitePanelFadeIn = false;
+                    openinPanel.SetActive(false);
+                    itemShowingPanel.SetActive(true);
+                }
             }
         }
     }
@@ -251,6 +261,7 @@ public class ChestSystem : MonoBehaviour
 
         openinChestAnimator.Play("chestopening", -1, 0f);
         whitePanelFadeIn = true;
+        
     }
 }
 
