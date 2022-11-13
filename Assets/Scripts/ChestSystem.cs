@@ -47,7 +47,10 @@ public class ChestSystem : MonoBehaviour
 
     [Header("Item showing")] 
     public Image itemImage;
+    public TMP_Text itemAmount;
     public GameObject itemShowingPanel;
+    public Sprite chestnutSprite;
+    public Sprite shinyCoinsSprite;
 
     [Header("SFX")] 
     public AudioClip unlockedSfx;
@@ -134,6 +137,7 @@ public class ChestSystem : MonoBehaviour
                     whitePanelFadeIn = false;
                     openinPanel.SetActive(false);
                     itemShowingPanel.SetActive(true);
+                    ShowChestnuts();
                 }
             }
         }
@@ -262,6 +266,12 @@ public class ChestSystem : MonoBehaviour
         openinChestAnimator.Play("chestopening", -1, 0f);
         whitePanelFadeIn = true;
         
+    }
+
+    public void ShowChestnuts()
+    {
+        itemImage.sprite = chestnutSprite;
+        itemAmount.text = Convert.ToString(chestnutsAmounts[(int)selectedChestRarity]);
     }
 }
 
