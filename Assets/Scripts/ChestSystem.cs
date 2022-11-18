@@ -46,6 +46,7 @@ public class ChestSystem : MonoBehaviour
     public bool whitePanelFadeIn;
 
     [Header("Item showing")] 
+    public bool anyItems;
     public Image itemImage;
     public TMP_Text itemAmount;
     public GameObject itemShowingPanel;
@@ -138,9 +139,26 @@ public class ChestSystem : MonoBehaviour
                     openinPanel.SetActive(false);
                     itemShowingPanel.SetActive(true);
                     ShowChestnuts();
+                    anyItems = true;
                 }
             }
         }
+    }
+
+    public void DoNextItemShow()
+    {
+        if (anyItems == true)
+        {
+            if (DoesChestContainCoins()) ShowShinyCoins();
+            anyItems = false;
+        }
+        else if (anyItems == false) return;
+    }
+
+    public bool DoesChestContainCoins()
+    {
+        if ((int)selectedChestRarity >= 2) return true;
+        else return false;
     }
 
     public void AddChestToSlot()
@@ -272,6 +290,12 @@ public class ChestSystem : MonoBehaviour
     {
         itemImage.sprite = chestnutSprite;
         itemAmount.text = Convert.ToString(chestnutsAmounts[(int)selectedChestRarity]);
+    }
+    
+    public void ShowShinyCoins()
+    {
+        itemImage.sprite = shinyCoinsSprite;
+        itemAmount.text = Convert.ToString(shinyCoinsAmounts[(int)selectedChestRarity]);
     }
 }
 

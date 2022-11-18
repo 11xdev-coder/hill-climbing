@@ -3226,22 +3226,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 38992484}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 363163920}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 323259637}
+        m_TargetAssemblyTypeName: UnityEngine.CanvasGroup, UnityEngine
+        m_MethodName: set_alpha
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3250,10 +3238,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 323259637}
-        m_TargetAssemblyTypeName: UnityEngine.CanvasGroup, UnityEngine
-        m_MethodName: set_alpha
-        m_Mode: 4
+      - m_Target: {fileID: 1538812164}
+        m_TargetAssemblyTypeName: ChestSystem, Assembly-CSharp
+        m_MethodName: DoNextItemShow
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4168,11 +4156,12 @@ MonoBehaviour:
   openinChestAnimator: {fileID: 1949048876}
   whitePanel: {fileID: 323259637}
   whitePanelFadeIn: 0
+  anyItems: 0
   itemImage: {fileID: 651068361}
   itemAmount: {fileID: 717661986}
   itemShowingPanel: {fileID: 38992484}
   chestnutSprite: {fileID: 21300000, guid: b531425dd7617604da91fad5fd9a86d2, type: 3}
-  shinyCoinsSprite: {fileID: 0}
+  shinyCoinsSprite: {fileID: 21300000, guid: 58bb8b69e0e7e2c4c97aa788c557281f, type: 3}
   unlockedSfx: {fileID: 8300000, guid: 768e5c606aab08648ae16026701604a2, type: 3}
   chestSprites:
   - {fileID: 21300000, guid: 9cd4cf2f2d23b8740952a24952ef500f, type: 3}
