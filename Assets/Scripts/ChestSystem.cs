@@ -152,7 +152,11 @@ public class ChestSystem : MonoBehaviour
             if (DoesChestContainCoins()) ShowShinyCoins();
             anyItems = false;
         }
-        else if (anyItems == false) return;
+        else if (anyItems == false)
+        {
+            itemShowingPanel.SetActive(false);
+            mainHUD.SetActive(true);
+        }
     }
 
     public bool DoesChestContainCoins()
