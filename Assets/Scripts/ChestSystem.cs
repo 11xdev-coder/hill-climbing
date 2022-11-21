@@ -61,6 +61,10 @@ public class ChestSystem : MonoBehaviour
     public int[] chestnutsAmounts = new int[7];
     public int[] shinyCoinsAmounts = new int[7];
 
+    [Header("Player's Collectibles")]
+    public int playerChestnuts;
+    public int playerShinyCoins;
+
     
 
     private bool _full;
@@ -147,7 +151,7 @@ public class ChestSystem : MonoBehaviour
 
     public void DoNextItemShow()
     {
-        if (anyItems == true)
+        if (anyItems)
         {
             if (DoesChestContainCoins()) ShowShinyCoins();
             anyItems = false;
@@ -294,12 +298,14 @@ public class ChestSystem : MonoBehaviour
     {
         itemImage.sprite = chestnutSprite;
         itemAmount.text = Convert.ToString(chestnutsAmounts[(int)selectedChestRarity]);
+        playerChestnuts += chestnutsAmounts[(int) selectedChestRarity];
     }
     
     public void ShowShinyCoins()
     {
         itemImage.sprite = shinyCoinsSprite;
         itemAmount.text = Convert.ToString(shinyCoinsAmounts[(int)selectedChestRarity]);
+        playerShinyCoins += shinyCoinsAmounts[(int) selectedChestRarity];
     }
 }
 
