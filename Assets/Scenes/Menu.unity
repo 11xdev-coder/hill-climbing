@@ -1105,6 +1105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 363163921}
   - component: {fileID: 363163922}
+  - component: {fileID: 363163923}
   m_Layer: 5
   m_Name: Main
   m_TagString: Untagged
@@ -1149,6 +1150,22 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &363163923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363163920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62ea8557dde3e9d4992dc43f80715f2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chestnuts: 0
+  shinyCoins: 0
+  chestnutsGUI: {fileID: 964171421}
+  shinyCoinsGUI: {fileID: 2023953924}
 --- !u!1 &367915972
 GameObject:
   m_ObjectHideFlags: 0
@@ -4500,6 +4517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainHUD: {fileID: 363163920}
+  playerCollectibles: {fileID: 363163923}
   selectedChestRarity: 0
   firstChestRarity: 0
   secondChestRarity: 0
@@ -4543,6 +4561,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 54701d89fb0e77d41bb987f312477949, type: 3}
   chestnutsAmounts: ac0d0000881300004c1d0000ce310000d85900008cb90000e8fd0000
   shinyCoinsAmounts: 000000000000000001000000050000000a000000c800000064000000
+  playerChestnuts: 0
+  playerShinyCoins: 0
 --- !u!1 &1586260444
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ using Image = UnityEngine.UI.Image;
 public class ChestSystem : MonoBehaviour
 {
     public GameObject mainHUD;
+    public PlayerCollectibles playerCollectibles;
     [Header("Chest Rarities")] 
     public ChestRarity selectedChestRarity;
     public ChestRarity firstChestRarity;
@@ -148,6 +149,23 @@ public class ChestSystem : MonoBehaviour
             }
         }
     }
+    
+    #region Items
+    public void ShowChestnuts()
+    {
+        itemImage.sprite = chestnutSprite;
+        itemAmount.text = Convert.ToString(chestnutsAmounts[(int)selectedChestRarity]);
+        playerChestnuts += chestnutsAmounts[(int) selectedChestRarity];
+        playerCollectibles.AddChestnuts(playerChestnuts);
+    }
+    
+    public void ShowShinyCoins()
+    {
+        itemImage.sprite = shinyCoinsSprite;
+        itemAmount.text = Convert.ToString(shinyCoinsAmounts[(int)selectedChestRarity]);
+        playerShinyCoins += shinyCoinsAmounts[(int) selectedChestRarity];
+        playerCollectibles.AddShinyCoins(playerShinyCoins);
+    }
 
     public void DoNextItemShow()
     {
@@ -168,6 +186,7 @@ public class ChestSystem : MonoBehaviour
         if ((int)selectedChestRarity >= 2) return true;
         else return false;
     }
+    #endregion
 
     public void AddChestToSlot()
     {
@@ -292,20 +311,6 @@ public class ChestSystem : MonoBehaviour
         openinChestAnimator.Play("chestopening", -1, 0f);
         whitePanelFadeIn = true;
         
-    }
-
-    public void ShowChestnuts()
-    {
-        itemImage.sprite = chestnutSprite;
-        itemAmount.text = Convert.ToString(chestnutsAmounts[(int)selectedChestRarity]);
-        playerChestnuts += chestnutsAmounts[(int) selectedChestRarity];
-    }
-    
-    public void ShowShinyCoins()
-    {
-        itemImage.sprite = shinyCoinsSprite;
-        itemAmount.text = Convert.ToString(shinyCoinsAmounts[(int)selectedChestRarity]);
-        playerShinyCoins += shinyCoinsAmounts[(int) selectedChestRarity];
     }
 }
 
