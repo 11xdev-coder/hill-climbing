@@ -15,7 +15,8 @@ public class PlayerCollectibles : MonoBehaviour
     
     void Start()
     {
-        
+        UpdateChestnuts(chestnuts);
+        UpdateShinyCoins(shinyCoins);
     }
 
     // Update is called once per frame
