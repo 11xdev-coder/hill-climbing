@@ -15,6 +15,8 @@ public class PlayerCollectibles : MonoBehaviour
     
     void Start()
     {
+        chestnuts = PlayerPrefs.GetInt("chestnuts");
+        shinyCoins = PlayerPrefs.GetInt("shinycoins");
         UpdateChestnuts(chestnuts);
         UpdateShinyCoins(shinyCoins);
     }
@@ -29,12 +31,14 @@ public class PlayerCollectibles : MonoBehaviour
     {
         chestnuts += newAmount;
         UpdateChestnuts(chestnuts);
+        PlayerPrefs.SetInt("chestnuts", chestnuts);
     }
 
     public void AddShinyCoins(int newAmount)
     {
         shinyCoins += newAmount;
         UpdateShinyCoins(shinyCoins);
+        PlayerPrefs.SetInt("shinycoins", shinyCoins);
     }
 
     public void UpdateChestnuts(int newVar) => chestnutsGUI.text = Convert.ToString(newVar);
