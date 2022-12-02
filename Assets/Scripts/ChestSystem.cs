@@ -151,6 +151,9 @@ public class ChestSystem : MonoBehaviour
     }
     
     #region Items
+    
+    
+    
     public void ShowChestnuts()
     {
         itemImage.sprite = chestnutSprite;
@@ -172,6 +175,11 @@ public class ChestSystem : MonoBehaviour
         if (anyItems)
         {
             if (DoesChestContainCoins()) ShowShinyCoins();
+            else
+            {
+                itemShowingPanel.SetActive(false);
+                mainHUD.SetActive(true); 
+            }
             anyItems = false;
         }
         else if (anyItems == false)
