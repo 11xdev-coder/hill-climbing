@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class LicenseSystem : MonoBehaviour
 {
-    public bool isFirstTime= true;
+    public byte isFirstTime;
     public string name;
 
     [Header("UI")]
@@ -15,8 +15,7 @@ public class LicenseSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerPrefs.GetInt("firsttime") > 0) isFirstTime = true;
-        else isFirstTime = false;
+        isFirstTime = (byte)PlayerPrefs.GetInt("firsttime");
     }
 
     // Update is called once per frame
@@ -27,9 +26,8 @@ public class LicenseSystem : MonoBehaviour
 
     public void SaveName()
     {
-        isFirstTime = false;
-        if (isFirstTime) PlayerPrefs.SetInt("firsttime", 0);
-        else PlayerPrefs.SetInt("firsttime", 1);
+        isFirstTime = 0;
+        PlayerPrefs.SetInt("firsttime", isFirstTime);
         name = nameInput.text;
         PlayerPrefs.SetString("drivername", name);
         print(name);
