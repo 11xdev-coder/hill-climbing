@@ -874,6 +874,18 @@
       <Project>{e13967e6-31a3-be59-48f0-74c0cf03b1b0}</Project>
       <Name>Unity.SysrootPackage.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.PlayerPrefsEditor.Editor.csproj">
+      <Project>{523ce1f5-6cf3-5565-1c97-d1bef7ad0305}</Project>
+      <Name>Unity.PlayerPrefsEditor.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.PlayerPrefsEditor.Samples.SampleScene.csproj">
+      <Project>{c9cf4464-e317-95d7-3014-86d7916fe702}</Project>
+      <Name>Unity.PlayerPrefsEditor.Samples.SampleScene</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.PlayerPrefsEditor.EditorResources.csproj">
+      <Project>{444b1e3a-4513-ca1d-b955-fb2fb5486733}</Project>
+      <Name>Unity.PlayerPrefsEditor.EditorResources</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

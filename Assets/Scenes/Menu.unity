@@ -4040,7 +4040,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64ae886666a1eab498d31b554bae7454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFirstTime: 1
   name: 
+  main: {fileID: 363163920}
+  firsttimePanel: {fileID: 1146890009}
   nameInput: {fileID: 588858087}
 --- !u!1 &1061168714
 GameObject:

@@ -737,6 +737,10 @@
       <Project>{a2464db8-bbd5-a686-6316-c4c3742f88f5}</Project>
       <Name>Unity.2D.SpriteShape.Runtime</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.PlayerPrefsEditor.Samples.SampleScene.csproj">
+      <Project>{c9cf4464-e317-95d7-3014-86d7916fe702}</Project>
+      <Name>Unity.PlayerPrefsEditor.Samples.SampleScene</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
