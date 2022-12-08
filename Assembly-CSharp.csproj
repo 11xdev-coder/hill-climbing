@@ -830,6 +830,10 @@
       <Project>{610e06ec-f367-480c-f053-d26cb12e3df0}</Project>
       <Name>Unity.2D.IK.Runtime</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.PlayerPrefsEditor.Editor.csproj">
+      <Project>{523ce1f5-6cf3-5565-1c97-d1bef7ad0305}</Project>
+      <Name>Unity.PlayerPrefsEditor.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Burst.csproj">
       <Project>{983a96d2-656b-00cc-515f-eefc0f5d9daa}</Project>
       <Name>Unity.Burst</Name>
@@ -841,6 +845,10 @@
     <ProjectReference Include="Unity.2D.PixelPerfect.Editor.csproj">
       <Project>{61d6d617-3452-ad16-2a0a-44cdd246ed6d}</Project>
       <Name>Unity.2D.PixelPerfect.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.PlayerPrefsEditor.Samples.SampleScene.csproj">
+      <Project>{c9cf4464-e317-95d7-3014-86d7916fe702}</Project>
+      <Name>Unity.PlayerPrefsEditor.Samples.SampleScene</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Toolchain.Win-x86_64-Linux-x86_64.csproj">
       <Project>{5dc23f4d-6df1-2a0d-633a-386df9b1df98}</Project>
@@ -873,14 +881,6 @@
     <ProjectReference Include="Unity.SysrootPackage.Editor.csproj">
       <Project>{e13967e6-31a3-be59-48f0-74c0cf03b1b0}</Project>
       <Name>Unity.SysrootPackage.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.PlayerPrefsEditor.Editor.csproj">
-      <Project>{523ce1f5-6cf3-5565-1c97-d1bef7ad0305}</Project>
-      <Name>Unity.PlayerPrefsEditor.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.PlayerPrefsEditor.Samples.SampleScene.csproj">
-      <Project>{c9cf4464-e317-95d7-3014-86d7916fe702}</Project>
-      <Name>Unity.PlayerPrefsEditor.Samples.SampleScene</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.PlayerPrefsEditor.EditorResources.csproj">
       <Project>{444b1e3a-4513-ca1d-b955-fb2fb5486733}</Project>

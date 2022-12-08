@@ -10,11 +10,13 @@ public class LicenseSystem : MonoBehaviour
     public GameObject main;
     public GameObject firsttimePanel;
     public TMP_Text nameInput;
+    public TMP_Text nameLabel;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        name = PlayerPrefs.GetString("drivername");
+        nameLabel.text = name;
         isFirstTime = (byte)PlayerPrefs.GetInt("firsttime");
         if (isFirstTime > 0)
         {
@@ -41,6 +43,6 @@ public class LicenseSystem : MonoBehaviour
         PlayerPrefs.SetString("drivername", name);
         firsttimePanel.SetActive(false);
         main.SetActive(true);
-        print(name);
+        nameLabel.text = name;
     }
 }
