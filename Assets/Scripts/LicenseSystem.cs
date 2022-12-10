@@ -9,7 +9,8 @@ public class LicenseSystem : MonoBehaviour
     [Header("UI")] 
     public GameObject main;
     public GameObject firsttimePanel;
-    public TMP_Text nameInput;
+    public TMP_Text nameInputFTScreen;
+    public TMP_Text nameInputEditScreen;
     public TMP_Text nameLabel;
     
     // Start is called before the first frame update
@@ -35,14 +36,21 @@ public class LicenseSystem : MonoBehaviour
         
     }
 
-    public void SaveName()
+    public void SaveNameFromFTScreen()
     {
         isFirstTime = 0;
         PlayerPrefs.SetInt("firsttime", isFirstTime);
-        name = nameInput.text;
+        name = nameInputFTScreen.text;
         PlayerPrefs.SetString("drivername", name);
         firsttimePanel.SetActive(false);
         main.SetActive(true);
+        nameLabel.text = name;
+    }
+
+    public void SaveNameFromEditScreen()
+    {
+        name = nameInputEditScreen.text;
+        PlayerPrefs.SetString("drivername", name);
         nameLabel.text = name;
     }
 }
